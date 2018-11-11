@@ -3,5 +3,6 @@
   "type": "docker",
   "env": {
     "APP_GIST_ID": "@app-link-gist-id"
-  }
+  },
+  "alias": ["gnk.io", "www.gnk.io"]
 }
