@@ -2,7 +2,9 @@
   "version": 1,
   "type": "docker",
   "env": {
-    "APP_GIST_ID": "@app-link-gist-id"
+    "APP_GITHUB_GIST_ID": "@app-link-github-gist-id",
+    "APP_GITHUB_CLIENT_ID": "@app-link-github-client-id",
+    "APP_GITHUB_CLIENT_SECRET": "@app-link-github-client-secret"
   },
   "alias": ["gnk.io", "www.gnk.io"]
 }
