@@ -47,10 +47,10 @@ func (s *server) fetchRedirs() error {
 	fileContent := contentJSON["files"].(map[string]interface{})["link"].(map[string]interface{})["content"].(string)
 	s.redirList.mux.Lock()
 	fileJSONErr := json.Unmarshal([]byte(fileContent), &s.redirList.redirs)
+	s.redirList.mux.Unlock()
 	if fileJSONErr != nil {
 		return fileJSONErr
 	}
-	s.redirList.mux.Unlock()
 	return nil
 }
 
