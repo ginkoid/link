@@ -17,6 +17,8 @@ Clone the repo to your machine.
 }
 ```
 
+The paths in the gist should be lowercase. Request paths are lowercased before lookup in the map of redirects.
+
 [Create a GitHub OAuth app](https://github.com/settings/applications/new). This won't be used to authenticate any users, just to have higher rate limits for the GitHub API.
 
 Note that if you have more than ~45 replications of the app, the GitHub ratelimit will be hit, and updates to redirects won't be deployed until the ratelimit resets.

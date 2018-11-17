@@ -1,6 +1,7 @@
 package main
 
 import (
+  "strings"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -80,7 +81,7 @@ func (s *server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	headers.Set("x-xss-protection", "1; mode=block")
 	requestPath := path.Clean(r.URL.EscapedPath())
 	s.redirList.mux.RLock()
-	selectedRedir, ok := s.redirList.redirs[requestPath]
+	selectedRedir, ok := s.redirList.redirs[strings.ToLower(requestPath)]
 	s.redirList.mux.RUnlock()
 	if !ok {
 		w.WriteHeader(http.StatusNotFound)
@@ -97,5 +98,5 @@ func main() {
 		panic(fetchErr)
 	}
 	s.startRedirFetch()
-	panic(http.ListenAndServe(":80", &s))
+	panic(http.ListenAndServe(":8000", &s))
 }
