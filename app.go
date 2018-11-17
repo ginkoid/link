@@ -1,13 +1,13 @@
 package main
 
 import (
-  "strings"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
 	"path"
+	"strings"
 	"sync"
 	"time"
 )
