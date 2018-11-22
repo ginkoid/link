@@ -72,13 +72,13 @@ func (s *server) startRedirFetch() {
 }
 
 func (s *server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	headers := w.Header()
-	headers.Set("strict-transport-security", "max-age=31536000; includeSubDomains; preload")
-	headers.Set("content-security-policy", "default-src 'none'; sandbox")
-	headers.Set("referrer-policy", "no-referrer")
-	headers.Set("x-content-type-options", "nosniff")
-	headers.Set("x-frame-options", "SAMEORIGIN")
-	headers.Set("x-xss-protection", "1; mode=block")
+	h := w.Header()
+	h.Set("strict-transport-security", "max-age=31536000; includeSubDomains; preload")
+	h.Set("content-security-policy", "default-src 'none'; sandbox")
+	h.Set("referrer-policy", "no-referrer")
+	h.Set("x-content-type-options", "nosniff")
+	h.Set("x-frame-options", "SAMEORIGIN")
+	h.Set("x-xss-protection", "1; mode=block")
 	requestPath := path.Clean(r.URL.EscapedPath())
 	s.redirList.mux.RLock()
 	selectedRedir, ok := s.redirList.redirs[strings.ToLower(requestPath)]
@@ -92,11 +92,11 @@ func (s *server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	s := server{}
+	s := &server{}
 	fetchErr := s.fetchRedirs()
 	if fetchErr != nil {
 		panic(fetchErr)
 	}
 	s.startRedirFetch()
-	panic(http.ListenAndServe(":8000", &s))
+	panic(http.ListenAndServe(":8000", s))
 }
