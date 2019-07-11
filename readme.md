@@ -1,8 +1,6 @@
 # link
 
-Super simple redirect service! Powers [gnk.io](https://gnk.io).
-
-Downloads redirects from a gist.
+Super simple redirect service! Downloads redirects from a gist.
 
 ## deploying your own
 
